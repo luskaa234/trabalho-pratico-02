@@ -1,0 +1,78 @@
+classDiagram
+    class Veiculo {
+        <<superclasse>>
+        +placa
+        +modelo
+        +ano
+        +valor_diaria
+        +calcular_diaria()
+        +exibir_dados()
+    }
+    class Carro {
+        +quantidade_portas
+        +calcular_diaria()
+        +exibir_dados()
+    }
+    class Moto {
+        +cilindradas
+        +calcular_diaria()
+        +exibir_dados()
+    }
+    class Caminhao {
+        +capacidade_carga
+        +calcular_diaria()
+        +exibir_dados()
+    }
+    class Cliente {
+        <<superclasse>>
+        +nome_razao_social
+        +documento
+        +telefone
+        +atualizar_telefone()
+        +exibir_dados()
+    }
+    class PessoaFisica {
+        +nome
+        +cpf
+        +telefone
+        +atualizar_telefone()
+        +exibir_dados()
+    }
+    class PessoaJuridica {
+        +razao_social
+        +cnpj
+        +telefone
+        +atualizar_telefone()
+        +exibir_dados()
+    }
+    class ContratoLocacao {
+        +data_inicio
+        +data_termino_prevista
+        +valor_total
+        +status
+        +finalizar()
+        +cancelar()
+    }
+    class Condutor {
+        +nome
+        +numero_cnh
+        +categoria_cnh
+        +atualizar_cnh()
+        +exibir_dados()
+    }
+    class Manutencao {
+        +data
+        +tipo_servico
+        +custo
+        +registrar()
+        +exibir_dados()
+    }
+    Veiculo <|-- Carro
+    Veiculo <|-- Moto
+    Veiculo <|-- Caminhao
+    Cliente <|-- PessoaFisica
+    Cliente <|-- PessoaJuridica
+    Cliente "1" -- "0..*" ContratoLocacao : possui
+    Veiculo "1" -- "0..*" ContratoLocacao : utilizado em
+    ContratoLocacao "1" *-- "1" Condutor : possui
+    Veiculo "1" o-- "0..*" Manutencao : historico
